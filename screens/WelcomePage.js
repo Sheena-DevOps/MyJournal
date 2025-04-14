@@ -1,9 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const WelcomePage = () => {
   const navigation = useNavigation();
+
+  useEffect(() => {
+    console.warn("starting")
+    loginStatus();
+  }, []);
+
+  const loginStatus = async () => {
+    try {
+      const value = await AsyncStorage.getItem('isLogged');
+      if (value && value === 'true'){
+        navigation.navigate('MainTabs');
+      }
+    } catch (e) {
+      console.error('Reading error:', e);
+    }
+  };
 
   return (
     <View style={styles.container}>

@@ -1,23 +1,24 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Home = () => {
   const navigation = useNavigation();
-
+  const user = AsyncStorage.getItem('name');
 
   return (
     <View style={styles.container}>
       <Text style={{fontSize: 20, 
         color: 'black', padding:25,
-      }}>Hi </Text>
+      }}>Hi {user} </Text>
       
       <TouchableOpacity
               style={styles.add}
               onPress={() => navigation.navigate('Note')}>
               <Text style={styles.buttonText}>Write your thoughts and reflect on your day.</Text>
       </TouchableOpacity>
-
+     
       <TouchableOpacity
               style={styles.button}
               onPress={() => navigation.navigate('Note')}>

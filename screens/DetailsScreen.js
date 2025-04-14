@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TextInput, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const DetailsScreen = () => {
   const navigation = useNavigation();
@@ -8,15 +9,25 @@ const DetailsScreen = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
+  const login = async (value) => {
+    try {
+      await AsyncStorage.setItem('isLogged', value);
+    } catch (e) {
+      console.error('Saving error:', e);
+    }
+  };
+  AsyncStorage.setItem('name', username);
+  AsyncStorage.setItem('pin', password);
+
   const handleLogin = () => {
     if (username === '' || password === '') {
       Alert.alert('Details', 'Please give your Name and password');
-    } else if (password.length != 4) {
+    } else if (password.length !== 4) {
       Alert.alert('Password', 'Enter a 4 digit password');
     }else {
-      navigation.replace('MainTabs')}
-};
-
+      login('true');
+      navigation.replace('MainTabs');}
+  };
   return (
     <View style={styles.container}>
       <Text style={{fontSize: 20,

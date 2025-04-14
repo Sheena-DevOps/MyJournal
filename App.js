@@ -10,39 +10,8 @@ import CalendarPage from './screens/CalendarPage';
 import NoteEntry from './screens/NoteEntry';
 import SettingsPage from './screens/SettingsPage';
 
-const RootStack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
-
-// const StackNavigator = () => {
-//   return (
-//       <Stack.Navigator screenOptions={{ headerShown: false }}>
-//         <Stack.Screen name="Home" component={Home} />
-//         <Stack.Screen name="Note" component={NoteEntry}/>
-//       </Stack.Navigator>
-//   );
-// };
-// const TabNavigator = () => {
-//   return (
-//       <Tab.Navigator screenOptions={{ headerShown: false }}>
-//         <Tab.Screen name="Home" component={StackNavigator}/>
-//         <Tab.Screen name="Calender" component={CalendarPage}/>
-//         <Tab.Screen name="Settings" component={SettingsPage}/>
-//       </Tab.Navigator>
-//   );
-// };
-// export default function App() {
-//   return (
-//     <NavigationContainer>
-//       <RootStack.Navigator screenOptions={{ headerShown: false }} >
-//         <RootStack.Screen name="Welcome" component={WelcomePage} />
-//         <RootStack.Screen name="Details" component={DetailsScreen} />
-
-//         <RootStack.Screen name="MainTabs" component={TabNavigator} />
-//       </RootStack.Navigator>
-//     </NavigationContainer>
-//   );
-// }
 
 const StackNavigator = () => {
   return (
