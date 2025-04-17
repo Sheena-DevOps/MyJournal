@@ -16,10 +16,9 @@ const NoteEntry = () => {
         Alert.alert('Please enter some text');
         return;
       }
-      // const date = new Date().toISOString(); // Get current date & time
       const now = new Date();
-const timeString = now.toTimeString().split(' ')[0]; // "HH:MM:SS"
-const dateTime = `${selectedDate}T${timeString}`;    // e.g. "2025-04-17T13:45:00"
+      const timeString = now.toTimeString().split(' ')[0]; // "HH:MM:SS"
+      const dateTime = `${selectedDate}T${timeString}`;    // e.g. "2025-04-17T13:45:00"
       const note = {
         title,
         text,
