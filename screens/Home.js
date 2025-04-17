@@ -20,9 +20,10 @@ const Home = () => {
       </TouchableOpacity>
      
       <TouchableOpacity
-              style={styles.button}
-              onPress={() => navigation.navigate('Note')}>
-              <Text style={styles.buttonText}>+</Text>
+        style={styles.button}
+        onPress={() => {
+          navigation.navigate('Note')}}>
+        <Text style={styles.buttonText}>+</Text>
       </TouchableOpacity>
 
     </View>
