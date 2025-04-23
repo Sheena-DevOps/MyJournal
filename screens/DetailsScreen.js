@@ -26,7 +26,9 @@ const DetailsScreen = () => {
       Alert.alert('Password', 'Enter a 4 digit password');
     }else {
       login('true');
-      navigation.replace('MainTabs');}
+      navigation.navigate('MainTabs');}
+      // navigation.replace('MainTabs');}
+
   };
   return (
     <View style={styles.container}>
@@ -44,7 +46,7 @@ const DetailsScreen = () => {
       <Text style={{fontSize: 20,
         color: 'black',
         marginBottom:15,
-      }}>Set your digit Password
+      }}>Set your Password
       </Text>
       <TextInput
         style={styles.input}

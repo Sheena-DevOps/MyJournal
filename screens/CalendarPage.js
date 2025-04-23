@@ -1,11 +1,10 @@
 import React, { useCallback, useState } from 'react';
-import { useFocusEffect } from '@react-navigation/native';
 import { View, Text, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect } from '@react-navigation/native';
 import {Calendar} from 'react-native-calendars';
 import moment from 'moment';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
 
 const CalendarPage = () => {
   const navigation = useNavigation();
@@ -37,7 +36,6 @@ const CalendarPage = () => {
   const handleDateSelect = (day) => {
     const date = day.dateString;
     setSelectedDate(date);
-    // find the note for the selected date
     const notesForDate = notes.filter((n) => n.date.startsWith(date));
     setDayNotes(notesForDate);
   };
@@ -86,16 +84,18 @@ const CalendarPage = () => {
       markedDates={markedDates}
       />
 
-      <View style={{ padding: 20 }}>
-        <Text style={{ fontWeight: 'bold', marginTop: 5, fontSize: 15 }}>{moment(selectedDate).format('MMM D')
-        }</Text>
+      <View style={{ padding: 20, marginBottom: '80%', }}>
+      {selectedDate ? (
+        <Text style={{ fontWeight: 'bold', marginTop: 5, fontSize: 15 }}>
+          {moment(selectedDate).format('MMM D')
+        }</Text>) : null}
         {dayNotes.length === 0 && selectedDate !== '' ? (
           <Text style={{ color: 'gray' }}>No notes for this day.</Text>
         ) : (
           <FlatList
             data={dayNotes}
             keyExtractor={(item, index) => index.toString()}
-            style={{ marginTop: 10 }}
+            style={{ marginTop: 10, }}
             renderItem={({ item }) => (
               <TouchableOpacity
                 style={{
@@ -105,28 +105,31 @@ const CalendarPage = () => {
                   marginBottom: 10,
                   maxHeight: 100,
                 }}
-                onPress={() => navigation.navigate('Note', { selectedDate })}
+                onPress={() => navigation.navigate('Note', {
+                  selectedDate,
+                  dayNotes: item,
+                })}
               >
                 <View style={{ justifyContent: 'center',}}>
                 {item.title ? (
                   <Text style={{fontSize:20}}>{item.title}</Text>) : null}
-                  <Text>{item.text}</Text>
+                  <Text numberOfLines={2}>{item.text}</Text>
                   <Text style={{ fontSize: 12, color: 'gray' }}>
                     {moment(item.date).format('h:mm A')
                     }
                   </Text>
-
                 </View>
               </TouchableOpacity>
             )}
-          />
+            showsVerticalScrollIndicator={false}
+            />
         )}
       </View>
 
      <TouchableOpacity
         style={styles.button}
         onPress={() => {
-          navigation.navigate('Note', { selectedDate});}}>
+          navigation.navigate('Note', { selectedDate });}}>
         <Text style={styles.buttonText}>+</Text>
      </TouchableOpacity>
     </View>

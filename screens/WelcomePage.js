@@ -7,7 +7,6 @@ const WelcomePage = () => {
   const navigation = useNavigation();
 
   useEffect(() => {
-    console.warn("starting")
     loginStatus();
   }, []);
 
@@ -15,7 +14,8 @@ const WelcomePage = () => {
     try {
       const value = await AsyncStorage.getItem('isLogged');
       if (value && value === 'true'){
-        navigation.navigate('MainTabs');
+        // navigation.navigate('MainTabs');
+        navigation.navigate('PasswordLogin');
       }
     } catch (e) {
       console.error('Reading error:', e);
