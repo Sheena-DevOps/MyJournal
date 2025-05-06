@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TextInput, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { SafeAreaView } from 'react-native';
 
 const PasswordLogin = () => {
   const navigation = useNavigation();
@@ -10,7 +11,7 @@ const PasswordLogin = () => {
   const checkPassword = async () => {
     const oldPin = await AsyncStorage.getItem('pin');
     if (password === '') {
-      Alert.alert('Details', 'Please give your Name and password');
+      Alert.alert('Details', 'Please enter the password');
     } else if (oldPin === password) {
         navigation.navigate('MainTabs');
     } else {
@@ -20,10 +21,13 @@ const PasswordLogin = () => {
   };
   
   return (
-      <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
+
+      {/* <View style={styles.container}> */}
         
         <Text style={{fontSize: 20,
           color: 'black',
+          marginTop: '40%',
           marginBottom:15,
         }}>Enter Password
         </Text>
@@ -40,13 +44,14 @@ const PasswordLogin = () => {
           onPress={checkPassword}>
           <Text style={styles.buttonText}>Continue</Text>
         </TouchableOpacity>
-      </View>
+      {/* </View> */}
+      </SafeAreaView>
     );
   };
   const styles = StyleSheet.create({
     container: {
       flex: 1,
-      justifyContent: 'center',
+      alignItems: 'center',
       backgroundColor: '#ffe6f0',
       padding:50,
     },
@@ -58,7 +63,7 @@ const PasswordLogin = () => {
       alignItems: 'center',
       borderRadius: 10,
       marginHorizontal:50,
-      marginTop:50,
+      marginTop:'60%',
     },
     buttonText: {
       color: 'white',
