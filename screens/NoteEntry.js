@@ -7,7 +7,7 @@ import moment from 'moment';
 
 const NoteEntry = () => {
   const navigation = useNavigation();
-  
+
  const route = useRoute();
   const {
     selectedDate = new Date().toISOString().split('T')[0], 
@@ -20,7 +20,7 @@ const NoteEntry = () => {
   const [savedText, setSavedText] = useState('');
   const [isSaved, setIsSaved] = useState(false);
   const [savedNoteId, setSavedNoteId] = useState(null);
-    
+
     useEffect(() => {
       if (dayNotes) {
         setTitle(dayNotes.title);
@@ -55,7 +55,7 @@ const NoteEntry = () => {
         } else {
           notes.push(note);
         }
-      
+
         await AsyncStorage.setItem('calendarNotes', JSON.stringify(notes));
         Alert.alert('Note saved!');
         setSavedTitle(title);
@@ -81,11 +81,11 @@ const NoteEntry = () => {
             try {
               const existing = await AsyncStorage.getItem('calendarNotes');
               const notes = existing ? JSON.parse(existing) : [];
-  
+
               const updatedNotes = notes.filter(note => note.id !== savedNoteId);
-  
+
               await AsyncStorage.setItem('calendarNotes', JSON.stringify(updatedNotes));
-  
+
               setText('');
               setTitle('');
               setIsSaved(false);
@@ -108,7 +108,7 @@ const NoteEntry = () => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={{ fontWeight: 'bold', marginTop: 5, fontSize: 15 }}>
+        <Text style={styles.dateToday}>
           {moment(selectedDate).format('MMM D')}
         </Text>
         {!isSaved ? (
@@ -151,6 +151,11 @@ const styles = StyleSheet.create({
   },
   input: {
     fontSize: 18,
+  },
+  dateToday: {
+    fontWeight: 'bold',
+    marginTop: 5,
+    fontSize: 15,
   },
 });
 

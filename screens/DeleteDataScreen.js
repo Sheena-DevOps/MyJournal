@@ -14,8 +14,8 @@ export default function DeleteDataScreen({ navigation }) {
           onPress: () => {
             console.log("Data deleted");
             navigation.goBack();
-          }
-        }
+          },
+        },
       ]
     );
   };

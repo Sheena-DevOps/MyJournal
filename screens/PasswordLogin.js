@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, Alert } from 'react-native';
+import { Text, StyleSheet, TouchableOpacity, TextInput, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SafeAreaView } from 'react-native';
@@ -19,35 +19,27 @@ const PasswordLogin = () => {
     }
     setPassword('');
   };
-  
+
   return (
     <SafeAreaView style={styles.container}>
-
-      {/* <View style={styles.container}> */}
-        
-        <Text style={{fontSize: 20,
-          color: 'black',
-          marginTop: '40%',
-          marginBottom:15,
-        }}>Enter Password
-        </Text>
-        <TextInput
-          style={styles.input}
-          value={password}
-          keyboardType={'numeric'}
-          onChangeText={setPassword}
-          secureTextEntry={true}
-          maxLength={4}
-        />
-        <TouchableOpacity
-          style={styles.button}
-          onPress={checkPassword}>
-          <Text style={styles.buttonText}>Continue</Text>
-        </TouchableOpacity>
-      {/* </View> */}
-      </SafeAreaView>
-    );
-  };
+      <Text style={styles.text}>Enter Password
+      </Text>
+      <TextInput
+        style={styles.input}
+        value={password}
+        keyboardType={'numeric'}
+        onChangeText={setPassword}
+        secureTextEntry={true}
+        maxLength={4}
+      />
+      <TouchableOpacity
+        style={styles.button}
+        onPress={checkPassword}>
+        <Text style={styles.buttonText}>Continue</Text>
+      </TouchableOpacity>
+    </SafeAreaView>
+  );
+};
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -78,7 +70,12 @@ const PasswordLogin = () => {
       borderRadius: 10,
       padding: 10,
     },
+    text: {
+      fontSize: 20,
+      color: 'black',
+      marginTop: '40%',
+      marginBottom:15,
+    },
   });
-  
+
   export default PasswordLogin;
-  

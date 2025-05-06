@@ -32,10 +32,7 @@ const DetailsScreen = () => {
   };
   return (
     <View style={styles.container}>
-      <Text style={{fontSize: 20,
-        color: 'black',
-        marginBottom:15,
-        }}>What should we call you?
+      <Text style={styles.text}>What should we call you?
       </Text>
       <TextInput
         style={styles.input}
@@ -43,10 +40,7 @@ const DetailsScreen = () => {
         onChangeText={setUsername}
         maxLength={10}
       />
-      <Text style={{fontSize: 20,
-        color: 'black',
-        marginBottom:15,
-      }}>Set your Password
+      <Text style={styles.text}>Set your Password
       </Text>
       <TextInput
         style={styles.input}
@@ -61,14 +55,7 @@ const DetailsScreen = () => {
         onPress={handleLogin}>
         <Text style={styles.buttonText}>Continue</Text>
       </TouchableOpacity>
-      <Text style={{fontSize: 15,
-        color: 'black',
-        position: 'absolute',
-        bottom: 20,
-        left: 0,
-        right: 0,
-        textAlign: 'center',
-      }}>You can make changes later
+      <Text style={styles.note}>You can make changes later
       </Text>
     </View>
   );
@@ -80,6 +67,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffe6f0',
     padding:50,
   },
+  text:{
+    fontSize: 20,
+    color: 'black',
+    marginBottom:15,
+    },
   button: {
     width: '70%',
     height: 50,
@@ -102,6 +94,15 @@ const styles = StyleSheet.create({
     backgroundColor:'white',
     borderRadius: 10,
     padding: 10,
+  },
+  note: {
+    fontSize: 15,
+    color: 'black',
+    position: 'absolute',
+    bottom: 20,
+    left: 0,
+    right: 0,
+    textAlign: 'center',
   },
 });
 

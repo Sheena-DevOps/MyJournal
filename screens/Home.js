@@ -49,10 +49,8 @@ const Home = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={{fontSize: 20, 
-        color: 'black', padding:25,
-      }}>Hi {user} </Text>
-      
+      <Text style={styles.welcomeText}>Hi {user} </Text>
+
       <TouchableOpacity
               style={styles.add}
               onPress={() => navigation.navigate('Note')}>
@@ -98,6 +96,11 @@ const styles = StyleSheet.create({
     flex: 1,
     position: 'relative',
     backgroundColor:'#ffe6f0',
+  },
+  welcomeText: {
+    fontSize: 20,
+    color: 'black',
+    padding:25,
   },
   list: {
     marginTop:'40%',

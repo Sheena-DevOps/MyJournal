@@ -93,53 +93,40 @@ const CalendarPage = () => {
               : moment().format('MMMM')}
           </Text>
         )}
-        theme={{
-          calendarBackground: 'white',
-          textSectionTitleColor: 'gray',
-          selectedDayTextColor: '#ffffff',
-          todayTextColor: '#00adf5',
-          dayTextColor: '#2d4150',
-          textDisabledColor: '#b6c1cd',
-        }}
+        theme={styles.sectionTheme}
         onDayPress={handleDateSelect}
         markedDates={markedDates}
       />
 
-      <View style={{padding: 20, marginBottom: '80%'}}>
+      <View style={styles.selectDate}>
         {selectedDate ? (
-          <Text style={{fontWeight: 'bold', marginTop: 5, fontSize: 15}}>
+          <Text style={styles.selectDateText}>
             {moment(selectedDate).format('MMM D')}
           </Text>
         ) : null}
 
         {dayNotes.length === 0 && selectedDate !== '' ? (
-          <Text style={{color: 'gray'}}>No notes for this day.</Text>
+          <Text style={styles.defaultNote}>No notes for this day.</Text>
         ) : (
           <FlatList
             data={dayNotes}
             keyExtractor={(item, index) => index.toString()}
-            style={{marginTop: 10}}
+            style={styles.list}
             renderItem={({item}) => (
               <TouchableOpacity
-                style={{
-                  padding: 10,
-                  backgroundColor: '#fefefe',
-                  borderRadius: 6,
-                  marginBottom: 10,
-                  maxHeight: 100,
-                }}
+                style={styles.noteBox}
                 onPress={() =>
                   navigation.navigate('Note', {
                     selectedDate,
                     dayNotes: item,
                   })
                 }>
-                <View style={{justifyContent: 'center'}}>
+                <View style={styles.content}>
                   {item.title ? (
-                    <Text style={{fontSize: 20}}>{item.title}</Text>
+                    <Text style={styles.heading}>{item.title}</Text>
                   ) : null}
                   <Text numberOfLines={2}>{item.text}</Text>
-                  <Text style={{fontSize: 12, color: 'gray'}}>
+                  <Text style={styles.dateHeading}>
                     {moment(item.date).format('h:mm A')}
                   </Text>
                 </View>
@@ -168,6 +155,30 @@ const styles = StyleSheet.create({
   monthText: {
     fontSize: 20,
   },
+  selectDate: {
+    padding: 20,
+    marginBottom: '80%',
+  },
+  selectDateText: {
+    fontWeight: 'bold',
+    marginTop: 5,
+    fontSize: 15,
+  },
+  defaultNote: {color: 'gray'},
+  list: {marginTop: 10},
+  noteBox:{
+    padding: 10,
+    backgroundColor: '#fefefe',
+    borderRadius: 6,
+    marginBottom: 10,
+    maxHeight: 100,
+  },
+  content: {justifyContent: 'center'},
+  heading: {fontSize: 20},
+  dateHeading: {
+    fontSize: 12,
+    color: 'gray',
+  },
   button: {
     width: 50,
     height: 50,
@@ -183,6 +194,14 @@ const styles = StyleSheet.create({
     color: 'black',
     fontSize: 18,
     textAlign: 'center',
+  },
+  sectionTheme: {
+    calendarBackground: 'white',
+    textSectionTitleColor: 'gray',
+    selectedDayTextColor: '#ffffff',
+    todayTextColor: '#00adf5',
+    dayTextColor: '#2d4150',
+    textDisabledColor: '#b6c1cd',
   },
 });
 

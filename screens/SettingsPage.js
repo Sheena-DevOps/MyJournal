@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity,TextInput, StyleSheet, Modal, Alert } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SettingsPage = () => {
-    const navigation = useNavigation();
     const [nameModalVisible, setNameModalVisible] = useState(false);
     const [pinModalVisible, setPinModalVisible] = useState(false);
     const [isOldVerified, setIsOldVerified] = useState(false);
@@ -47,10 +45,9 @@ const SettingsPage = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={{fontSize: 20, color: 'black',
-        }}>Settings 
+      <Text style={styles.header}>Settings
       </Text>
-      
+
       <TouchableOpacity onPress={() => setNameModalVisible(true)}>
         <Text style={[styles.option,{marginTop:20}]}>Edit Your Name</Text>
       </TouchableOpacity>
@@ -83,12 +80,12 @@ const SettingsPage = () => {
               <TouchableOpacity
                   style={styles.buttonCancel}
                   onPress={() => {setNameModalVisible(false); setUsername('');}}>
-                 <Text style={{color:'black', fontSize:16}}>Cancel</Text>
+                 <Text style={styles.textCancel}>Cancel</Text>
               </TouchableOpacity>
               <TouchableOpacity
                   style={styles.buttonSave}
                   onPress={() => saveUsername()}>
-                 <Text style={{color:'white', fontSize:16}}>Save</Text>
+                 <Text style={styles.textSave}>Save</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -119,14 +116,14 @@ const SettingsPage = () => {
                 <TouchableOpacity
                     style={styles.buttonCancel}
                     onPress={() => {setPinModalVisible(false); setPassword('');}}>
-                  <Text style={{color:'black', fontSize:16}}>Cancel</Text>
+                  <Text style={styles.textCancel}>Cancel</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.buttonSave}
                     onPress={() => checkPassword()}>
-                  <Text style={{color:'white', fontSize:16}}>Continue</Text>
+                  <Text style={styles.textSave}>Continue</Text>
                 </TouchableOpacity>
-              </View> 
+              </View>
               </>) : (
                 <>
               <TextInput
@@ -154,14 +151,14 @@ const SettingsPage = () => {
                     setIsOldVerified(false);
                     setPassword('');
                     setConfirmPassword(''); }}>
-                  <Text style={{color:'black', fontSize:16}}>Cancel</Text>
+                  <Text style={styles.textCancel}>Cancel</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.buttonSave}
                     onPress={() => {
                       if (password === '' || confirmPassword === '') {
                         Alert.alert('Password', 'Please enter both new password and confirm password');
-                      } 
+                      }
                       else if (password.length !== 4) {
                         Alert.alert('Password', 'Enter a 4 digit password');
                       }
@@ -178,7 +175,7 @@ const SettingsPage = () => {
                       }
                     }}>
 
-                  <Text style={{color:'white', fontSize:16}}>Save</Text>
+                  <Text style={styles.textSave}>Save</Text>
                 </TouchableOpacity>
               </View>
               </>)
@@ -196,17 +193,17 @@ const SettingsPage = () => {
         <View style={styles.modalBackdrop}>
           <View style={styles.modalContainer}>
             <Text style={styles.modalTitle}>Are you sure?</Text>
-            <Text style={{fontSize: 18, marginBottom: 20,}}>This will permanently delete your data.</Text>
+            <Text style={styles.note}>This will permanently delete your data.</Text>
             <View style={styles.modalButtons}>
               <TouchableOpacity
                   style={styles.buttonCancel}
                   onPress={() => {setDeleteModalVisible(false);}}>
-                 <Text style={{color:'black', fontSize:16}}>Cancel</Text>
+                 <Text style={styles.textCancel}>Cancel</Text>
               </TouchableOpacity>
               <TouchableOpacity
                   style={styles.buttonSave}
                   onPress={() => deleteData()}>
-                 <Text style={{color:'white', fontSize:16}}>Delete</Text>
+                 <Text style={styles.textSave}>Delete</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -217,7 +214,16 @@ const SettingsPage = () => {
 };
 const styles = StyleSheet.create({
   container: { padding: 20 },
-  option: { fontSize: 18, paddingVertical: 15, borderBottomWidth: 1, borderColor: '#ddd' },
+  header: {
+    fontSize: 20,
+    color: 'black',
+  },
+  option: {
+    fontSize: 18,
+    paddingVertical: 15,
+    borderBottomWidth: 1,
+    borderColor: '#ddd',
+  },
   modalBackdrop: {
     flex: 1,
     justifyContent: 'center',
@@ -259,6 +265,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 10,
+  },
+  textCancel: {
+    color:'black',
+    fontSize:16,
+  },
+  textSave: {
+    color:'white',
+    fontSize:16,
+  },
+  note: {
+    fontSize: 18,
+    marginBottom: 20,
   },
 });
 

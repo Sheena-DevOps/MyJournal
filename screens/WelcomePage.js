@@ -24,13 +24,8 @@ const WelcomePage = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={{fontSize: 25, 
-        color: 'black',
-      }}>Welcome to</Text>
-      <Text style={{
-        fontSize: 30,
-        color: 'black',
-      }}>My Journal!</Text>
+      <Text style={styles.welcome}>Welcome to</Text>
+      <Text style={styles.appName}>My Journal!</Text>
 
       <TouchableOpacity
         style={styles.button}
@@ -47,6 +42,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#ffe6f0',
+  },
+  welcome: {
+    fontSize: 25,
+    color: 'black',
+  },
+  appName: {
+      fontSize: 30,
+      color: 'black',
   },
   button: {
     width: '70%',
