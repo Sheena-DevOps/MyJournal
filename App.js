@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -12,6 +12,8 @@ import CalendarPage from './screens/CalendarPage';
 import NoteEntry from './screens/NoteEntry';
 import SettingsPage from './screens/SettingsPage';
 import DeleteDataScreen from './screens/DeleteDataScreen';
+
+import messaging from '@react-native-firebase/messaging';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -57,6 +59,58 @@ const TabNavigator = () => {
 };
 
 export default function App() {
+  useEffect(() => {
+
+    messaging().setBackgroundMessageHandler(async remoteMessage => {
+      console.log('Message handled in the background!', remoteMessage);
+      // Optionally perform background logic here, like saving to AsyncStorage
+    });
+    
+    getToken();
+    
+    const unsubscribe = messaging().onMessage(async remoteMessage => {
+      console.log('A new FCM message arrived!', remoteMessage);
+    });
+
+    const unsubscribe1 = messaging().onNotificationOpenedApp(remoteMessage => {
+      console.log(
+        'Notification background:',
+        remoteMessage.notification,
+      );
+    });
+
+    requestUserPermission();
+
+    return () => { 
+      unsubscribe;
+      unsubscribe1;
+    };
+  }, []);
+
+
+  const getToken = async () => {
+    console.log('FCM Token:');
+    const token = await messaging().getToken();
+    console.log('FCM Token:', token);
+
+    const message = await messaging().getInitialNotification();
+    if (message) {
+      console.log('Notification caused app to open from quit state:', message.notification);
+      // Navigate to the desired screen based on the notification data
+    }
+  };
+
+  async function requestUserPermission() {
+    const authStatus = await messaging().requestPermission();
+    const enabled =
+      authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
+      authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+
+    if (enabled) {
+      console.log('Authorization status:', authStatus);
+    }
+  }
+
   return (
     <NavigationContainer>
       <StackNavigator />
