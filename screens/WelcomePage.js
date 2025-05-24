@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -23,7 +23,7 @@ const WelcomePage = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text style={styles.welcome}>Welcome to</Text>
       <Text style={styles.appName}>My Journal!</Text>
 
@@ -32,7 +32,7 @@ const WelcomePage = () => {
         onPress={() => navigation.navigate('Details')}>
         <Text style={styles.buttonText}>Get Started</Text>
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 };
 const styles = StyleSheet.create({

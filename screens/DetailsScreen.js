@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, Alert } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, Alert, SafeAreaView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -31,7 +31,7 @@ const DetailsScreen = () => {
 
   };
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text style={styles.text}>What should we call you?
       </Text>
       <TextInput
@@ -57,7 +57,7 @@ const DetailsScreen = () => {
       </TouchableOpacity>
       <Text style={styles.note}>You can make changes later
       </Text>
-    </View>
+    </SafeAreaView>
   );
 };
 const styles = StyleSheet.create({

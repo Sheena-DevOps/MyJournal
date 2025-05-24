@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
-import { View, Text, StyleSheet, TouchableOpacity, SectionList } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, SectionList, SafeAreaView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import moment from 'moment';
@@ -48,7 +48,7 @@ const Home = () => {
     };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text style={styles.welcomeText}>Hi {user} </Text>
 
       <TouchableOpacity
@@ -88,7 +88,7 @@ const Home = () => {
         <Text style={styles.buttonText}>+</Text>
       </TouchableOpacity>
 
-    </View>
+    </SafeAreaView>
   );
 };
 const styles = StyleSheet.create({
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
   welcomeText: {
     fontSize: 20,
     color: 'black',
-    padding:25,
+    padding:20,
   },
   list: {
     marginTop:'40%',
@@ -116,11 +116,11 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     position: 'absolute',
     right: '10%',
-    bottom: '15%',
+    bottom: '10%',
   },
   add: {
     width: '80%',
-    height: '15%',
+    height: '18%',
     backgroundColor: '#FFB6C1',
     justifyContent: 'center',
     alignItems: 'center',
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 20,
     position: 'absolute',
     right: 0,
-    top: '15%',
+    marginTop: '35%',
     padding: 20,
   },
   buttonText: {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity,TextInput, StyleSheet, Modal, Alert } from 'react-native';
+import { View, Text, TouchableOpacity,TextInput, StyleSheet, Modal, Alert, SafeAreaView } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SettingsPage = () => {
@@ -44,7 +44,7 @@ const SettingsPage = () => {
     };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style = {styles.container}>
       <Text style={styles.header}>Settings
       </Text>
 
@@ -209,7 +209,7 @@ const SettingsPage = () => {
           </View>
         </View>
       </Modal>
-    </View>
+    </SafeAreaView>
   );
 };
 const styles = StyleSheet.create({

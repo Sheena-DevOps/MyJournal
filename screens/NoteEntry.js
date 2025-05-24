@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useRoute } from '@react-navigation/native';
-import { View, TextInput, Button, StyleSheet, Alert, Text, ScrollView } from 'react-native';
+import { View, TextInput, Button, StyleSheet, Alert, Text, ScrollView, SafeAreaView} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import moment from 'moment';
@@ -106,7 +106,7 @@ const NoteEntry = () => {
   }, [title, text, savedTitle, savedText, isSaved]);  
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.dateToday}>
           {moment(selectedDate).format('MMM D')}
@@ -131,7 +131,7 @@ const NoteEntry = () => {
         onChangeText={setText}
       />
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 };
 const styles = StyleSheet.create({

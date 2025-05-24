@@ -1,5 +1,5 @@
 import React, {useCallback, useState, useEffect} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, FlatList, SafeAreaView} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {useFocusEffect} from '@react-navigation/native';
 import {Calendar} from 'react-native-calendars';
@@ -76,7 +76,7 @@ const CalendarPage = () => {
   );
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Calendar
         current={
           currentMonth
@@ -144,7 +144,7 @@ const CalendarPage = () => {
         }}>
         <Text style={styles.buttonText}>+</Text>
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 };
 const styles = StyleSheet.create({
@@ -188,7 +188,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     position: 'absolute',
     right: '10%',
-    bottom: '15%',
+    bottom: '10%',
   },
   buttonText: {
     color: 'black',
