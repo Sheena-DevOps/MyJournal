@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { Text, StyleSheet, TouchableOpacity, TextInput, Alert } from 'react-native';
+import { Text, StyleSheet, TouchableOpacity, TextInput, Alert, SafeAreaView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { SafeAreaView } from 'react-native';
 
 const PasswordLogin = () => {
   const navigation = useNavigation();

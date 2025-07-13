@@ -1,7 +1,6 @@
 import React, { useState, useCallback } from 'react';
-import { useFocusEffect } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { View, Text, StyleSheet, TouchableOpacity, SectionList, SafeAreaView } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import moment from 'moment';
 
@@ -128,7 +127,7 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 20,
     position: 'absolute',
     right: 0,
-    marginTop: '35%',
+    marginTop: '20%',
     padding: 20,
   },
   buttonText: {

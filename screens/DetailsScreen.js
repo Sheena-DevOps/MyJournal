@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, Alert, SafeAreaView } from 'react-native';
+import { Text, StyleSheet, TouchableOpacity, TextInput, Alert, SafeAreaView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -26,8 +26,8 @@ const DetailsScreen = () => {
       Alert.alert('Password', 'Enter a 4 digit password');
     }else {
       login('true');
-      navigation.navigate('MainTabs');}
-      // navigation.replace('MainTabs');}
+      navigation.navigate('MainTabs');
+}
 
   };
   return (

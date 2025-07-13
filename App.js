@@ -11,7 +11,6 @@ import Home from './screens/Home';
 import CalendarPage from './screens/CalendarPage';
 import NoteEntry from './screens/NoteEntry';
 import SettingsPage from './screens/SettingsPage';
-import DeleteDataScreen from './screens/DeleteDataScreen';
 
 import messaging from '@react-native-firebase/messaging';
 
@@ -32,7 +31,6 @@ const StackNavigator = () => {
       <Stack.Screen name="PasswordLogin" component={PasswordLogin} />
       <Stack.Screen name="MainTabs" component={TabNavigator} />
       <Stack.Screen name="Note" component={NoteEntry} />
-      <Stack.Screen name="DeleteData" component={DeleteDataScreen} />
     </Stack.Navigator>
   );
 };

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useRoute } from '@react-navigation/native';
+import { useRoute, useNavigation } from '@react-navigation/native';
 import { View, TextInput, Button, StyleSheet, Alert, Text, ScrollView, SafeAreaView} from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import moment from 'moment';
 
@@ -103,7 +102,7 @@ const NoteEntry = () => {
     if (isSaved && (title !== savedTitle || text !== savedText)) {
       setIsSaved(false);
     }
-  }, [title, text, savedTitle, savedText, isSaved]);  
+  }, [title, text, savedTitle, savedText, isSaved]);
 
   return (
     <SafeAreaView style={styles.container}>
